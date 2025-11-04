@@ -2,6 +2,7 @@
   "name": "attendance-frontend",
   "version": "1.0.0",
   "private": true,
+<<<<<<< HEAD
   "homepage": "https://<your-github-username>.github.io/attendance-frontend",
   "scripts": {
     "dev": "vite",
@@ -9,6 +10,12 @@
     "preview": "vite preview",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
+=======
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+>>>>>>> c0cf8636331290172763a8116614229b95f805b4
   },
   "dependencies": {
     "react": "^18.2.0",
@@ -16,7 +23,11 @@
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.0.0",
+<<<<<<< HEAD
     "gh-pages": "^6.3.0",
+=======
+    "concurrently": "^9.2.1",
+>>>>>>> c0cf8636331290172763a8116614229b95f805b4
     "vite": "^4.3.9"
   }
 }
