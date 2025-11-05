@@ -3,11 +3,201 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Attendance Management</title>
-    <script type="module" crossorigin src="/attendance-frontend/assets/index-64e344fa.js"></script>
-    <link rel="stylesheet" href="/attendance-frontend/assets/index-e12e197a.css">
+    <title>Attendance Management | Login</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+
+      body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #4f46e5, #9333ea);
+        color: #333;
+      }
+
+      .login-container {
+        background: #fff;
+        padding: 2rem;
+        border-radius: 16px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        width: 350px;
+        text-align: center;
+      }
+
+      h2 {
+        margin-bottom: 1.5rem;
+        color: #4f46e5;
+      }
+
+      .input-group {
+        margin-bottom: 1rem;
+        text-align: left;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 0.4rem;
+        font-weight: 600;
+      }
+
+      input {
+        width: 100%;
+        padding: 0.7rem;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+      }
+
+      button {
+        background: #4f46e5;
+        color: white;
+        border: none;
+        padding: 0.8rem;
+        width: 100%;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background 0.3s;
+        font-weight: 600;
+      }
+
+      button:hover {
+        background: #4338ca;
+      }
+
+      .switch-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 1.5rem;
+      }
+
+      .switch-buttons button {
+        width: 48%;
+        background: #9333ea;
+      }
+
+      .switch-buttons button.active {
+        background: #4f46e5;
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      .error {
+        color: red;
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+      }
+    </style>
+    <script type="module" crossorigin src="/attendance-frontend/assets/index-cc7db74b.js"></script>
+    <link rel="stylesheet" href="/attendance-frontend/assets/index-1c1001c6.css">
   </head>
+
   <body>
+    <div class="login-container">
+      <div class="switch-buttons">
+        <button id="studentBtn" class="active" onclick="showStudentLogin()">
+          Student
+        </button>
+        <button id="facultyBtn" onclick="showFacultyLogin()">Faculty</button>
+      </div>
+
+      <!-- Student Login -->
+      <form id="studentLogin">
+        <h2>Student Login</h2>
+        <div class="input-group">
+          <label for="studentId">Student ID</label>
+          <input type="text" id="studentId" placeholder="Enter your ID" required />
+        </div>
+        <div class="input-group">
+          <label for="studentPassword">Password</label>
+          <input
+            type="password"
+            id="studentPassword"
+            placeholder="Enter your password"
+            required
+          />
+        </div>
+        <button type="submit">Login</button>
+      </form>
+
+      <!-- Faculty Login -->
+      <form id="facultyLogin" class="hidden">
+        <h2>Faculty Login</h2>
+        <div class="error" id="errorMsg"></div>
+        <div class="input-group">
+          <label for="facultyEmail">Email</label>
+          <input
+            type="email"
+            id="facultyEmail"
+            placeholder="Enter your email"
+            required
+          />
+        </div>
+        <div class="input-group">
+          <label for="facultyPassword">Password</label>
+          <input
+            type="password"
+            id="facultyPassword"
+            placeholder="Enter your password"
+            required
+          />
+        </div>
+        <button type="submit">Login</button>
+      </form>
+    </div>
+
+    <script>
+      const studentForm = document.getElementById("studentLogin");
+      const facultyForm = document.getElementById("facultyLogin");
+      const studentBtn = document.getElementById("studentBtn");
+      const facultyBtn = document.getElementById("facultyBtn");
+      const errorMsg = document.getElementById("errorMsg");
+
+      // Toggle between forms
+      function showStudentLogin() {
+        studentForm.classList.remove("hidden");
+        facultyForm.classList.add("hidden");
+        studentBtn.classList.add("active");
+        facultyBtn.classList.remove("active");
+      }
+
+      function showFacultyLogin() {
+        facultyForm.classList.remove("hidden");
+        studentForm.classList.add("hidden");
+        facultyBtn.classList.add("active");
+        studentBtn.classList.remove("active");
+      }
+
+      // Student login (no validation, open directly)
+      studentForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        window.location.href = "https://pravallikaganpisetty.github.io/attendance-frontend/";
+      });
+
+      // Faculty login (must use correct credentials)
+      facultyForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const email = document.getElementById("facultyEmail").value.trim();
+        const password = document.getElementById("facultyPassword").value.trim();
+
+        // Set your allowed credentials here
+        const allowedEmail = "faculty@college.com";
+        const allowedPassword = "faculty123";
+
+        if (email === allowedEmail && password === allowedPassword) {
+          window.location.href = "https://pravallikaganpisetty.github.io/attendance-frontend/";
+        } else {
+          errorMsg.textContent = "Invalid email or password!";
+        }
+      });
+    </script>
+
+    <!-- React App Mount Point -->
     <div id="root"></div>
     
   </body>
